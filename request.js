@@ -2,16 +2,21 @@ const requestURL = "http://localhost:8000/api/v1"
 
 function get_Data() {
 
-    let request = new XMLHttpRequest();
+    fetch(requestURL + "/titles/")
+        .then(response => {
+            return response.json()
+        })
+        .then(response => {
+            console.log(response)
+        })
 
-    request.onreadystatechange = function () {
-        if (request.readyState === 4) {
-            return request.response['results'];
-        }
-    }
 
-    request.open('GET', requestURL + "/titles");
-    request.responseType = 'json';
-    request.send();
 
+    // le js retournera le html dans les grilles
+
+    // boucle pour chaque film dans result -> modifier le html des squares dynamiquement -> dataset < data- >
+
+    // action / animation / fantasy / horror genre=<name>
+
+    // sort_by=<imdb_score>
 }
