@@ -18,5 +18,20 @@ function get_Data() {
 
     // action / animation / fantasy / horror genre=<name>
 
-    // sort_by=<imdb_score>
+}
+
+function get_Best_Movie() {
+    fetch(requestURL + "/titles/?sort_by=-imdb_score")
+        .then(response => {
+            return response.json()
+            // Prendre seulement le premier resultat de results et ok
+        })
+}
+
+function get_Movies_By_Type(type) {
+    fetch(requestURL + "/titles/?sort_by=-imdb_score&genre=" + type)
+        .then(response => {
+            return response.json()
+            // Prendre seulement les 7 premiers résultats dans results puis les insérer dans la div avec la data = a type
+        })
 }
