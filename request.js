@@ -22,27 +22,25 @@ function get_Data() {
 
 function get_Best_Movie() {
     fetch(requestURL + "/titles/?sort_by=-imdb_score")
-        .then(response => {
-            return response.json()[results][0]
-            // Prendre seulement le premier resultat de results et ok
-        }
-            // <div id="Meilleur_Film">
+        .then(response => response.json())
+        .then(data => console.log(data["results"][0]));
 
-            //     <div class="square">
+    // <div id="Meilleur_Film">
 
-            //     </div>
+    //     <div class="square">
 
-            // </div>
+    //     </div>
 
-        )
+    // </div>
 }
 
 function get_Movies_By_Type(type) {
     fetch(requestURL + "/titles/?sort_by=-imdb_score&genre=" + type.charAt(0).toUpperCase())
-        .then(response => {
-            movies[type] = response.json()[results][0, 6]
-            // Prendre seulement les 7 premiers résultats dans results puis les insérer dans la const movies
-        })
+        .then(response => response.json())
+        .then(data => console.log(data["results"][0, 6]))
+    //for (movie in data) {
+    //    movies[type] = data
+    //}
 }
 
 function update_Body() {
