@@ -13,7 +13,7 @@ export function get_Best_Movie() {
         });
 }
 
-export async function getFilmDetail(url){
+export async function getFilmDetail(url) {
     const response = await fetch(url)
     const film = await response.json()
     return film
@@ -24,15 +24,14 @@ export async function getFilmDetail(url){
  */
 export async function get_Movies_By_Type(type) {
     let genre = type
-    if (!type){
+    if (!type) {
         genre = ""
         type = "Best"
     }
     let best_movies = []
     let page1 = requestURL + "/titles/?sort_by=-imdb_score&genre=" + genre
     let page2 = requestURL + "/titles/?page=2&sort_by=-imdb_score&genre=" + genre
-    for(let url of [page1, page2])
-    {
+    for (let url of [page1, page2]) {
         const response = await fetch(url)
         const data = await response.json()
         let movies_data = data["results"]
@@ -57,13 +56,13 @@ function return_Data_From_Id(id) {
 }
 
 
-function print_Image_From_Id(element, data){
+function print_Image_From_Id(element, data) {
     let content = `<div id="${data.title}" class="square">
 
     <img src="${data.image_url}" alt="L'image du film ${data.title}" class="img"></img>`
-    
+
     element.innerHTML += content + "</div>"
-    
+
 }
 
 /**
@@ -73,7 +72,7 @@ function return_html_from_data(element, data) {
     let content = `<div id="${data.title}" class="square">
 
     <img src="${data.image_url}" alt="L'image du film ${data.title}" class="img"></img>
-    <p> ${data.title} </p>`
+    <h1> ${data.title} </h1>`
 
 
     for (let genre of data.genres) {
@@ -116,7 +115,7 @@ function return_complete_html_from_data(element, data) {
     element.innerHTML += content + "</div>"
 }
 
-function return_carousel(films, type){
+function return_carousel(films, type) {
     let element = document.getElementById("Container")
     let category = document.createElement("h1")
     category.style = "text-align: center;"

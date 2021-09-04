@@ -25,13 +25,14 @@ ul {
   img {
     float: left;
     height: auto;
-    width: 25%;
+    width: auto;
+    margin-right: 5px;
   }
 
   .square {
     position: relative;
-    width: 50%;
-    height: 35%;
+    width: auto;
+    height: 268px;
     border: 1px solid black;
     margin-right: 20%;
     margin-left: 20%;
