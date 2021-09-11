@@ -25,8 +25,12 @@
  * @param {(string)} [options.arrPrevText=&laquo;] - Text for _PREV_ arrow.
  * @param {(string)} [options.arrNextText=&raquo;] - Text for _NEXT_ arrow.
  */
-function Carousel(options) {
-    var element  = document.getElementById(options.elem || 'carousel'),
+
+import setModal from "./modal.js";
+
+
+export default function Carousel(options) {
+    var element = document.getElementById(options.elem || 'carousel'),
         interval = options.interval || 3000,
 
         btnPlayText = options.btnPlayText || 'Play',
@@ -35,16 +39,16 @@ function Carousel(options) {
         arrNextText = options.arrNextText || '&rsaquo;',
         arrPrevText = options.arrPrevText || '&lsaquo;',
 
-        crslClass           = 'js-Carousel',
-        crslArrowPrevClass  = 'js-Carousel-arrowPrev',
-        crslArrowNextClass  = 'js-Carousel-arrowNext',
-        crslDotsClass       = 'js-Carousel-dots',
+        crslClass = 'js-Carousel',
+        crslArrowPrevClass = 'js-Carousel-arrowPrev',
+        crslArrowNextClass = 'js-Carousel-arrowNext',
+        crslDotsClass = 'js-Carousel-dots',
         crslButtonStopClass = 'js-Carousel-btnStop',
         crslButtonPlayClass = 'js-Carousel-btnPlay',
 
-        count   = element.querySelectorAll('li').length,
+        count = element.querySelectorAll('li').length,
         current = 0,
-        cycle   = null;
+        cycle = null;
 
     /**
      * Render the carousel if more than one slide.
@@ -61,22 +65,22 @@ function Carousel(options) {
      */
     function render() {
         var actions = {
-            dots: function() {
+            dots: function () {
                 return showDots();
             },
-            arrows: function() {
+            arrows: function () {
                 return showArrows();
             },
-            buttons: function() {
+            buttons: function () {
                 return showButtons();
             },
-            autoplay: function() {
+            autoplay: function () {
                 return play();
             },
-            infinite: function() {
+            infinite: function () {
                 return moveItem(count - 1, -element.offsetWidth + 'px', 'afterBegin');
             },
-            initial: function() {
+            initial: function () {
                 var initial = 0 || (options.initial >= count) ? count : options.initial;
                 return show(initial);
             }
@@ -108,6 +112,8 @@ function Carousel(options) {
 
         element.querySelector('.' + crslClass + ' > ul')
             .insertAdjacentHTML(position, itemToMove.outerHTML);
+
+        setModal()
     }
 
     /**
@@ -133,7 +139,7 @@ function Carousel(options) {
      * Highlight the corresponding dot of the currently visible carousel item.
      */
     function currentDot() {
-        [].forEach.call(element.querySelectorAll('.' + crslDotsClass + ' li'), function(item) {
+        [].forEach.call(element.querySelectorAll('.' + crslDotsClass + ' li'), function (item) {
             item.classList.remove('is-active');
         });
 

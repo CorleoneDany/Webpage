@@ -1,3 +1,5 @@
+import Carousel from "./carousel.js"
+
 const requestURL = "http://localhost:8000/api/v1"
 let movies = {}
 
