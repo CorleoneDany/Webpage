@@ -1,4 +1,5 @@
 import Carousel from "./carousel.js"
+import "./carousel_v2.js"
 
 const requestURL = "http://localhost:8000/api/v1"
 let movies = {}
@@ -42,7 +43,7 @@ export async function get_Movies_By_Type(type) {
         }
     }
 
-    return_carousel(best_movies, type)
+    return_carousel_v2(best_movies, type)
 }
 
 
@@ -122,7 +123,8 @@ function return_carousel(films, type) {
     let category = document.createElement("h1")
     category.style = "text-align: center;"
     category.innerText = type
-    element.appendChild(category)
+    // crée le titre
+
     element.appendChild(category)
     let id = `carousel_${type}`
     let carousel = document.createElement("div")
@@ -130,7 +132,7 @@ function return_carousel(films, type) {
     carousel.setAttribute("id", id)
     let ul = document.createElement("ul")
 
-
+    // crée la div 
 
     for (let film of films) {
         let li = document.createElement("li")
@@ -142,6 +144,8 @@ function return_carousel(films, type) {
         li.setAttribute("data-url", film.url)
         ul.appendChild(li)
     }
+
+    // ajoute les affiches de films dans la div 
 
     carousel.appendChild(ul)
 
@@ -157,8 +161,45 @@ function return_carousel(films, type) {
         buttons: false,      // hide play/stop buttons,
         btnStopText: 'Pause' // STOP button text
     });
+
+    // transforme les images en carousel
 }
 
+function return_carousel_v2(films, type) {
+    let container = document.getElementById("Container")
+    let category = document.createElement("h1")
+    category.style = "text-align: center;"
+    category.innerText = type
+    // crée le titre
+
+    container.appendChild(category)
+    let id = `carousel_${type}`
+    let carousel = document.createElement("div")
+    carousel.setAttribute("id", id)
+    let div_Elder = document.createElement("div")
+    div_Elder.setAttribute("class", `Elder-carousel_${type}`)
+
+    // crée la div 
+
+    for (let film of films) {
+        let div = document.createElement("div")
+        let img = document.createElement("img")
+        img.setAttribute("src", film.image_url)
+        img.setAttribute("alt", `L'image du film ${film.title}`)
+        div.appendChild(img)
+        div.setAttribute("class", "open-modal box")
+
+        div.setAttribute("data-url", film.url)
+        div_Elder.appendChild(div)
+    }
+
+    // ajoute les affiches de films dans la div 
+
+    carousel.appendChild(div_Elder)
+
+    container.appendChild(carousel)
+    ElderCarousel(`.Elder-carousel_${type}`);
 
 
-
+    // transforme les images en carousel
+}
