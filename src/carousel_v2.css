@@ -1,6 +1,9 @@
 .ec {
     position: relative;
+    border-radius: 12px;
+    border: 1px solid #DFDFDF;
 }
+
 .ec .ec__holder {
     overflow: hidden;
 }
@@ -15,6 +18,9 @@
 .ec .ec__item {
     float: left;
     overflow: hidden;
+    display: block;
+    margin: auto;
+    text-align: center;
 }
 .ec .ec__pagination {
     text-align: center;
@@ -52,4 +58,18 @@
 .ec .ec__nav--next {
     transform: rotate(45deg);
     right: 1em;
+}
+
+.ec .ec__img{
+    height: auto;
+    background-image: linear-gradient(to bottom right, #2193b0, #6dd5ed);
+    border: 3px solid #FFF;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.carousel_v2{
+    justify-content: center;
+    align-items: center;
 }

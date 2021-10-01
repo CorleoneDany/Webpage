@@ -176,6 +176,7 @@ function return_carousel_v2(films, type) {
     let id = `carousel_${type}`
     let carousel = document.createElement("div")
     carousel.setAttribute("id", id)
+    carousel.setAttribute("class", "carousel_v2")
     let div_Elder = document.createElement("div")
     div_Elder.setAttribute("class", `Elder-carousel_${type}`)
 
@@ -186,8 +187,9 @@ function return_carousel_v2(films, type) {
         let img = document.createElement("img")
         img.setAttribute("src", film.image_url)
         img.setAttribute("alt", `L'image du film ${film.title}`)
+        img.setAttribute("class", "ec__img")
         div.appendChild(img)
-        div.setAttribute("class", "open-modal box")
+        div.setAttribute("class", "open-modal")
 
         div.setAttribute("data-url", film.url)
         div_Elder.appendChild(div)
@@ -198,7 +200,7 @@ function return_carousel_v2(films, type) {
     carousel.appendChild(div_Elder)
 
     container.appendChild(carousel)
-    ElderCarousel(`.Elder-carousel_${type}`);
+    return new ElderCarousel(`.Elder-carousel_${type}`);
 
 
     // transforme les images en carousel
